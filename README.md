@@ -142,9 +142,14 @@ To simulate **realistic portfolio growth**, we model **monthly SIP investments**
 * For each month, add monthly SIP
 * Apply a **random return** drawn from a normal distribution:
 
-  $$
-  R_{\text{month}} \sim \mathcal{N}\left(\frac{r}{12}, \frac{\sigma}{\sqrt{12}}\right)
-  $$
+     ```
+     R_month ~ N(r / 12, σ / √12)
+     ```
+     Where:
+     - `r` is the annual expected return (CAGR)
+     - `σ` is the annual volatility
+     - `R_month` is the simulated monthly return
+
 * Repeat for all months and for **1000 simulations**
 * Average the final portfolio values from all simulations
 
