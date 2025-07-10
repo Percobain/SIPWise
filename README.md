@@ -1,4 +1,4 @@
-# 💰 Goal-Based SIP Investment Predictor using Financial Modeling + Machine Learning
+# Goal-Based SIP Investment Predictor using Financial Modeling + Machine Learning
 
 This project helps individuals plan their **monthly SIP (Systematic Investment Plan)** contributions based on:
 
