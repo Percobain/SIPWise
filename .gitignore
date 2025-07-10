@@ -2,3 +2,6 @@
 /flagged
 .gradio
 /SIPWise
+investment_predictor_data.joblib
+investment_predictor_model.joblib
+merge.py
