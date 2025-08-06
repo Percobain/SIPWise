@@ -39,9 +39,7 @@ Result: A clean dataset of **monthly prices** (2007–2021)
 
 We **resampled monthly data to yearly**, using the last closing price of each year, and computed **annual returns**:
 
-$$
-\text{Annual Return}_{\text{year}} = \frac{\text{Price}_{\text{end}} - \text{Price}_{\text{start}}}{\text{Price}_{\text{start}}}
-$$
+```**Annual Return (year)** = (Price_end - Price_start) / Price_start```
 
 This gave us a dataframe of **yearly % returns** for each asset.
 
