@@ -17,11 +17,11 @@ Once we calculate how these asset classes behave, we simulate portfolio growth a
 
 ---
 
-## 📌 Project Workflow (Step-by-Step)
+## Project Workflow (Step-by-Step)
 
 ---
 
-### 1. 📁 Data Collection & Cleaning
+### 1. Data Collection & Cleaning
 
 * Merged overlapping historical CSVs for Bitcoin (`BTC-INR`) from Yahoo Finance.
 * Aligned monthly closing prices for:
@@ -35,7 +35,7 @@ Result: A clean dataset of **monthly prices** (2007–2021)
 
 ---
 
-### 2. 📈 Yearly Return Calculation
+### 2. Yearly Return Calculation
 
 We **resampled monthly data to yearly**, using the last closing price of each year, and computed **annual returns**:
 
@@ -45,7 +45,7 @@ This gave us a dataframe of **yearly % returns** for each asset.
 
 ---
 
-### 3. 📊 CAGR: Compound Annual Growth Rate
+### 3. CAGR: Compound Annual Growth Rate
 
 We computed the **average annual growth** assuming compounding — more realistic than average returns.
 
@@ -61,7 +61,7 @@ Result:
 
 ---
 
-### 4. 📉 Volatility (Standard Deviation of Returns)
+### 4. Volatility (Standard Deviation of Returns)
 
 Measures the **risk** or **fluctuation** in returns. Higher volatility = more uncertainty.
 
@@ -71,7 +71,7 @@ $$
 
 ---
 
-### 5. 📊 Sharpe Ratio
+### 5. Sharpe Ratio
 
 Measures **risk-adjusted return** — how much excess return you're getting **per unit of risk**.
 
@@ -83,7 +83,7 @@ Assuming risk-free rate = 4%.
 
 ---
 
-### 6. 🎯 Risk Profiles (Asset Allocations)
+### 6. Risk Profiles (Asset Allocations)
 
 We defined 3 sample profiles:
 
@@ -97,11 +97,11 @@ risk_profiles = {
 
 ---
 
-### 7. 💼 Portfolio Return & Volatility (Realistic Modeling)
+### 7. Portfolio Return & Volatility (Realistic Modeling)
 
 For each **risk profile**, we calculate:
 
-#### ✅ Portfolio Return:
+#### Portfolio Return:
 
 Weighted average of asset CAGRs:
 
@@ -114,7 +114,7 @@ Where:
 * $w_i$: weight of asset $i$
 * $\text{CAGR}_i$: CAGR of asset $i$
 
-#### ✅ Portfolio Volatility:
+#### Portfolio Volatility:
 
 We don't just average volatilities — instead, we use the **covariance matrix** of asset returns and calculate true portfolio volatility:
 
@@ -127,11 +127,11 @@ Where:
 * $\mathbf{w}$: vector of weights
 * $\Sigma$: covariance matrix of asset returns
 
-🔁 We excluded FD from the covariance matrix since it has 0 volatility — its impact is scaled down appropriately.
+We excluded FD from the covariance matrix since it has 0 volatility — its impact is scaled down appropriately.
 
 ---
 
-### 8. 🎲 Monte Carlo Simulation (Investment Growth)
+### 8. Monte Carlo Simulation (Investment Growth)
 
 To simulate **realistic portfolio growth**, we model **monthly SIP investments** over a given time horizon using random monthly returns:
 
@@ -155,7 +155,7 @@ This gives us the **expected goal amount** for a given SIP, duration, and risk p
 
 ---
 
-### 9. 🧠 Generating Synthetic Data for ML
+### 9. Generating Synthetic Data for ML
 
 We flipped the simulation logic to **generate data** for machine learning:
 
@@ -175,11 +175,11 @@ For each combination:
 * $X =$ \[Goal Amount, Duration, Risk Profile (encoded)]
 * $y =$ Monthly SIP
 
-➡️ We generated **480 synthetic data points** to train a regression model.
+We generated **480 synthetic data points** to train a regression model.
 
 ---
 
-### 10. 🤖 Machine Learning Model
+### 10. Machine Learning Model
 
 We trained a `RandomForestRegressor` model to **predict the required monthly SIP**, given:
 
@@ -202,7 +202,7 @@ This lets users answer:
 > "How much should I invest monthly to reach ₹X in Y years with Z risk tolerance?"
 >
 
-✅ Model Accuracy:
+Model Accuracy:
 
 The model achieved an R² Score of 0.948, indicating that ~95% of the variance in SIP prediction is explained by the inputs.
 
@@ -210,7 +210,7 @@ This level of accuracy is excellent for financial estimation models, especially 
 
 ---
 
-### 11. 🧑‍💻 Gradio UI
+### 11. Gradio UI
 
 We built a clean, interactive web UI using **Gradio** where users can:
 
@@ -222,16 +222,16 @@ We built a clean, interactive web UI using **Gradio** where users can:
 
 ---
 
-## 📆 Final Outputs
+## Final Outputs
 
-* 🧠 A trained ML model that predicts SIP for any user input
-* 📈 Financial engine using real market data + Monte Carlo simulation
-* 🔍 Risk-adjusted metrics: CAGR, Volatility, Sharpe Ratio
-* 🌐 Gradio-powered interactive investment planner
+* A trained ML model that predicts SIP for any user input
+* Financial engine using real market data + Monte Carlo simulation
+* Risk-adjusted metrics: CAGR, Volatility, Sharpe Ratio
+* Gradio-powered interactive investment planner
 
 ---
 
-## 📚 Glossary of Financial Terms
+## Glossary of Financial Terms
 
 | Term             | Meaning                                                                 |
 | ---------------- | ----------------------------------------------------------------------- |
@@ -244,7 +244,7 @@ We built a clean, interactive web UI using **Gradio** where users can:
 
 ---
 
-## 📌 Why This Project Matters
+## Why This Project Matters
 
 * Most SIP calculators **hardcode returns** and ignore real volatility.
 * We use **historical data + statistical modeling** to provide realistic, personalized estimates.
